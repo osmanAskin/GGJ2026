@@ -92,7 +92,6 @@
   <Project Path="Febucci.TextAnimator.Demo.Runtime.csproj" />
   <Project Path="Febucci.Attributes.Runtime.csproj" />
   <Project Path="DOTweenPro.Scripts.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="UniTask.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
@@ -100,6 +99,7 @@
   <Project Path="TinyGiantStudio.BetterInspector.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Unity.Collections.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
   <Project Path="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" />
