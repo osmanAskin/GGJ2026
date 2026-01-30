@@ -28,7 +28,7 @@ MonoBehaviour:
   _showSizeCenter: 1
   _includeChildBounds: 1
   _currentSizeType: 0
-  _lockSizeAspectRatio: 0
+  _lockSizeAspectRatio: 1
   _maxChildCountForSizeCalculation: 50
   _maxChildInspectors: 10
   _showSizeGizmo: 0
