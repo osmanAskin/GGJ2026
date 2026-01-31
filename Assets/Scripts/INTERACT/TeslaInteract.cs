@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class TeslaInteract : MonoBehaviour
 {
     [Header("UI")]
-    public Text interactText;
+    public GameObject interactText;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
@@ -26,7 +25,7 @@ public class TeslaInteract : MonoBehaviour
     void Start()
     {
         if (interactText != null)
-            interactText.text = "";
+            interactText.SetActive(false);
     }
 
     void Update()
@@ -45,7 +44,7 @@ public class TeslaInteract : MonoBehaviour
 
         playerInside = true;
         if (interactText != null)
-            interactText.text = "Patlatmak için e tuþuna basýn";
+            interactText.SetActive(true);
     }
 
     void OnTriggerExit(Collider other)
@@ -54,14 +53,14 @@ public class TeslaInteract : MonoBehaviour
 
         playerInside = false;
         if (interactText != null)
-            interactText.text = "";
+            interactText.SetActive(false);
     }
 
     void ExplodeTesla()
     {
         exploded = true;
 
-        Debug.Log("TESLA PATLADI – 1 SANÝYE SONRA REFERANSLI OBJELER YOK OLACAK");
+        Debug.Log("TESLA PATLADI");
 
         ActivateRigidbodies();
         ActivateColliders();
@@ -76,11 +75,25 @@ public class TeslaInteract : MonoBehaviour
             Destroy(fx, 3f);
         }
 
-        // Coroutine Tesla yok edilmeden baþlýyor
         StartCoroutine(DestroyAffectedObjects());
-
-        // Tesla görselini kapat, script çalýþmaya devam etsin
         DisableTeslaVisuals();
+    }
+
+    IEnumerator DestroyAffectedObjects()
+    {
+        yield return new WaitForSeconds(affectedObjectsDestroyTime);
+
+        foreach (GameObject obj in affectedRootObjects)
+        {
+            if (obj != null)
+                Destroy(obj);
+        }
+
+        // MANAGER'A HABER VER
+        if (TeslaManager.Instance != null)
+            TeslaManager.Instance.RegisterTeslaDestroyed();
+
+        Destroy(gameObject);
     }
 
     void ActivateRigidbodies()
@@ -117,24 +130,8 @@ public class TeslaInteract : MonoBehaviour
         }
     }
 
-    IEnumerator DestroyAffectedObjects()
-    {
-        yield return new WaitForSeconds(affectedObjectsDestroyTime);
-
-        foreach (GameObject obj in affectedRootObjects)
-        {
-            if (obj != null)
-                Destroy(obj);
-        }
-
-        // En son Tesla tamamen yok edilir
-        Destroy(gameObject);
-    }
-
     void DisableTeslaVisuals()
     {
-        interactText.text = "";
-        // Tesla'yý anýnda silmek yerine görünmez yapýyoruz
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
             r.enabled = false;
 
