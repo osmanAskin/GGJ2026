@@ -90,15 +90,11 @@
   <Project Path="Febucci.Attributes.Editor.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
-  <Project Path="TinyGiantStudio.BetterInspector.BetterTransform.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
-  <Project Path="TinyGiantStudio.BetterInspector.Editor.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
   <Project Path="UniTask.Addressables.csproj" />
   <Project Path="DOTweenPro.EditorScripts.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="TinyGiantStudio.BetterInspector.csproj" />
-  <Project Path="TinyGiantStudio.BetterInspector.BetterTransform.csproj" />
   <Project Path="Unity.Collections.Editor.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
