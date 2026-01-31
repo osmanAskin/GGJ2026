@@ -70,8 +70,8 @@
   <Project Path="Unity.Collections.CodeGen.csproj" />
   <Project Path="MoreMountains.Feedbacks.NiceVibrations.csproj" />
   <Project Path="BrunoMikoski.AnimationSequencer.Editor.csproj" />
-  <Project Path="MoreMountains.Feedbacks.TextMeshPro.csproj" />
   <Project Path="DOTween.Modules.csproj" />
+  <Project Path="MoreMountains.Feedbacks.TextMeshPro.csproj" />
   <Project Path="Lofelt.NiceVibrations.Editor.csproj" />
   <Project Path="Unity.Mathematics.Editor.csproj" />
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
