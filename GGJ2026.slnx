@@ -60,8 +60,11 @@
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="AllIn1SpriteShaderAssembly.csproj" />
   <Project Path="Unity.Postprocessing.Runtime.csproj" />
+  <Project Path="CFXRRuntime.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.csproj" />
+  <Project Path="CFXRDemo.csproj" />
   <Project Path="BrunoMikoski.AnimationSequencer.csproj" />
+  <Project Path="CFXREditor.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Febucci.TextAnimator.Demo.Runtime.csproj" />
   <Project Path="Febucci.Attributes.Runtime.csproj" />
@@ -83,9 +86,12 @@
   <Project Path="Unity.CollabProxy.Editor.csproj" />
   <Project Path="Unity.ShaderGraph.Utilities.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
+  <Project Path="KinoBloom.Runtime.csproj" />
   <Project Path="Febucci.TextAnimator.TMP.Runtime.csproj" />
+  <Project Path="CFXR.WelcomeScreen.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
   <Project Path="sc.utilities.selectionhistory.editor.csproj" />
+  <Project Path="ToonyColorsPro.Demo.Editor.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
   <Project Path="Febucci.Attributes.Editor.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
