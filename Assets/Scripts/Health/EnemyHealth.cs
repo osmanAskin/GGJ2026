@@ -9,20 +9,25 @@ public partial class EnemyHealth : MonoBehaviour
     private float currentHealth;
 
     [Header("UI Referansı")]
-    public Slider healthBar; // Inspector'dan can barını buraya sürükle
+    public Slider healthBar;
 
     [Header("Hit Effect (Material)")]
     public float flashDuration = 0.15f;
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
-    
+
     private SkinnedMeshRenderer[] renderers;
     private MaterialPropertyBlock propBlock;
+
+    [Header("Death Effect")]
+    public GameObject explosionPrefab;
+    public float destroyDelay = 1.5f;
+
+    private bool isDead = false;
 
     void Start()
     {
         currentHealth = maxHealth;
 
-        // UI Slider başlangıç ayarları
         if (healthBar != null)
         {
             healthBar.maxValue = maxHealth;
@@ -31,51 +36,48 @@ public partial class EnemyHealth : MonoBehaviour
 
         renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         propBlock = new MaterialPropertyBlock();
-        
-        // Başlangıçta emission'ı temizle
+
         SetEmission(Color.black);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Tag kontrolü (B harfi büyük "Bullet")
+        if (isDead) return;
+
         if (other.CompareTag("Bullet"))
         {
             TakeDamage(10f);
-            Destroy(other.gameObject); 
+            Destroy(other.gameObject);
         }
     }
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return;
+
         currentHealth -= damage;
 
-        // Slider'ı güncelle
         if (healthBar != null)
-        {
             healthBar.value = currentHealth;
-        }
 
-        // Parlama efektini başlat
         StopCoroutine(nameof(HitFlashEffect));
         StartCoroutine(HitFlashEffect());
-        
-        Debug.Log("Düşman hasar aldı! Kalan: " + currentHealth);
 
-        if (currentHealth <= 0) Die();
+        if (currentHealth <= 0)
+            Die();
     }
 
     IEnumerator HitFlashEffect()
     {
-        SetEmission(Color.white * 5f); // Beyaz parlama
+        SetEmission(Color.white * 5f);
         yield return new WaitForSeconds(flashDuration);
-        SetEmission(Color.black); // Sönme
+        SetEmission(Color.black);
     }
 
     void SetEmission(Color color)
     {
         if (renderers == null) return;
-        
+
         foreach (var r in renderers)
         {
             if (r == null) continue;
@@ -87,7 +89,31 @@ public partial class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Düşman Öldü!");
-        Destroy(gameObject);
+        if (isDead) return;
+        isDead = true;
+
+        // Patlama efekti
+        if (explosionPrefab != null)
+        {
+            Instantiate(
+                explosionPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+        }
+
+        // Modeli kapat
+        foreach (var r in renderers)
+            r.enabled = false;
+
+        // Collider kapat
+        Collider col = GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+
+        // UI gizle
+        if (healthBar != null)
+            healthBar.gameObject.SetActive(false);
+
+        Destroy(gameObject, destroyDelay);
     }
 }
