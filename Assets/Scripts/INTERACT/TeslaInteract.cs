@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class TeslaInteract : MonoBehaviour
 {
     [Header("UI")]
-    public Text interactText;
+    public GameObject interactText;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
@@ -18,6 +17,12 @@ public class TeslaInteract : MonoBehaviour
     public float colliderSizeMultiplier = 1.5f;
     public float affectedObjectsDestroyTime = 1f;
 
+    [Header("Win Condition")]
+    public GameObject winPanel;
+    public int totalTeslaToWin = 4;
+
+    private static int destroyedTeslaCount = 0;
+
     private bool playerInside;
     private bool exploded;
 
@@ -26,7 +31,10 @@ public class TeslaInteract : MonoBehaviour
     void Start()
     {
         if (interactText != null)
-            interactText.text = "";
+            interactText.SetActive(false);
+
+        if (winPanel != null)
+            winPanel.SetActive(false);
     }
 
     void Update()
@@ -45,7 +53,7 @@ public class TeslaInteract : MonoBehaviour
 
         playerInside = true;
         if (interactText != null)
-            interactText.text = "Patlatmak için e tuþuna basýn";
+            interactText.SetActive(true);
     }
 
     void OnTriggerExit(Collider other)
@@ -54,14 +62,14 @@ public class TeslaInteract : MonoBehaviour
 
         playerInside = false;
         if (interactText != null)
-            interactText.text = "";
+            interactText.SetActive(false);
     }
 
     void ExplodeTesla()
     {
         exploded = true;
 
-        Debug.Log("TESLA PATLADI – 1 SANÝYE SONRA REFERANSLI OBJELER YOK OLACAK");
+        Debug.Log("TESLA PATLADI");
 
         ActivateRigidbodies();
         ActivateColliders();
@@ -76,11 +84,45 @@ public class TeslaInteract : MonoBehaviour
             Destroy(fx, 3f);
         }
 
-        // Coroutine Tesla yok edilmeden baþlýyor
         StartCoroutine(DestroyAffectedObjects());
 
-        // Tesla görselini kapat, script çalýþmaya devam etsin
         DisableTeslaVisuals();
+    }
+
+    IEnumerator DestroyAffectedObjects()
+    {
+        yield return new WaitForSeconds(affectedObjectsDestroyTime);
+
+        foreach (GameObject obj in affectedRootObjects)
+        {
+            if (obj != null)
+                Destroy(obj);
+        }
+
+        RegisterTeslaDestroyed();
+
+        Destroy(gameObject);
+    }
+
+    void RegisterTeslaDestroyed()
+    {
+        destroyedTeslaCount++;
+        Debug.Log("YOK EDÝLEN TESLA: " + destroyedTeslaCount);
+
+        if (destroyedTeslaCount >= totalTeslaToWin)
+        {
+            TriggerWin();
+        }
+    }
+
+    void TriggerWin()
+    {
+        Debug.Log("WIN CONDITION SAÐLANDI");
+
+        if (winPanel != null)
+            winPanel.SetActive(true);
+
+        Time.timeScale = 0f; // oyunu durdur
     }
 
     void ActivateRigidbodies()
@@ -117,24 +159,8 @@ public class TeslaInteract : MonoBehaviour
         }
     }
 
-    IEnumerator DestroyAffectedObjects()
-    {
-        yield return new WaitForSeconds(affectedObjectsDestroyTime);
-
-        foreach (GameObject obj in affectedRootObjects)
-        {
-            if (obj != null)
-                Destroy(obj);
-        }
-
-        // En son Tesla tamamen yok edilir
-        Destroy(gameObject);
-    }
-
     void DisableTeslaVisuals()
     {
-        interactText.text = "";
-        // Tesla'yý anýnda silmek yerine görünmez yapýyoruz
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
             r.enabled = false;
 
