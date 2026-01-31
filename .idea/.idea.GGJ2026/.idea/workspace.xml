@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40984fe6-7972-4c50-a9d5-6f1eb933ed9a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyAI/EnemyAI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyAI/EnemyAI.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJ2026/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJ2026/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Idle (1).controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Idle (1).controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Idle 1.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Idle 1.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Idle.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Walking.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Walking.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Zombie Attack.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/KARAKTER/Zombie Attack.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/slenderman/Materials/Tex_0666_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/slenderman/Materials/Tex_0666_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/slenderman/source/Slenderman/Materials/Tex_0666_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/slenderman/source/Slenderman/Materials/Tex_0666_0.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/YughuesFreeConcreteMaterials/YughuesFreeConcreteMaterials_HDRP.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/YughuesFreeConcreteMaterials/YughuesFreeConcreteMaterials_URP.unitypackage.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Gameplay-1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Gameplay-1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyAI.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/Enemy.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/Enemy.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/EnemyController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/EnemyController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/Interactable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/Interactable.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/PlayerManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavMesh/PlayerManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +88,7 @@
       <updated>1769848060667</updated>
       <workItem from="1769848062579" duration="3332000" />
       <workItem from="1769855620174" duration="11691000" />
-      <workItem from="1769893257036" duration="990000" />
+      <workItem from="1769893257036" duration="1586000" />
     </task>
     <servers />
   </component>
