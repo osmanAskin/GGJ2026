@@ -17,12 +17,6 @@ public class TeslaInteract : MonoBehaviour
     public float colliderSizeMultiplier = 1.5f;
     public float affectedObjectsDestroyTime = 1f;
 
-    [Header("Win Condition")]
-    public GameObject winPanel;
-    public int totalTeslaToWin = 4;
-
-    private static int destroyedTeslaCount = 0;
-
     private bool playerInside;
     private bool exploded;
 
@@ -32,9 +26,6 @@ public class TeslaInteract : MonoBehaviour
     {
         if (interactText != null)
             interactText.SetActive(false);
-
-        if (winPanel != null)
-            winPanel.SetActive(false);
     }
 
     void Update()
@@ -85,7 +76,6 @@ public class TeslaInteract : MonoBehaviour
         }
 
         StartCoroutine(DestroyAffectedObjects());
-
         DisableTeslaVisuals();
     }
 
@@ -99,30 +89,11 @@ public class TeslaInteract : MonoBehaviour
                 Destroy(obj);
         }
 
-        RegisterTeslaDestroyed();
+        // MANAGER'A HABER VER
+        if (TeslaManager.Instance != null)
+            TeslaManager.Instance.RegisterTeslaDestroyed();
 
         Destroy(gameObject);
-    }
-
-    void RegisterTeslaDestroyed()
-    {
-        destroyedTeslaCount++;
-        Debug.Log("YOK EDÝLEN TESLA: " + destroyedTeslaCount);
-
-        if (destroyedTeslaCount >= totalTeslaToWin)
-        {
-            TriggerWin();
-        }
-    }
-
-    void TriggerWin()
-    {
-        Debug.Log("WIN CONDITION SAÐLANDI");
-
-        if (winPanel != null)
-            winPanel.SetActive(true);
-
-        Time.timeScale = 0f; // oyunu durdur
     }
 
     void ActivateRigidbodies()
