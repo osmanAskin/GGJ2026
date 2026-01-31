@@ -1,27 +1,31 @@
 using UnityEngine;
 
-public class LookAtPlayerZOnly : MonoBehaviour
+public class EnemyDetectAndLook : MonoBehaviour
 {
     public Transform player;
-    public float rotationSpeed = 5f;
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player enemy alanýna girdi");
+
+            LookAtPlayer();
+        }
+    }
+
+    void LookAtPlayer()
+    {
+        if (player == null) return;
+
         Vector3 dir = player.position - transform.position;
 
-        // Z ekseni için açý hesabý
         float angleZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        Quaternion targetRotation = Quaternion.Euler(
+        transform.rotation = Quaternion.Euler(
             transform.eulerAngles.x,
             transform.eulerAngles.y,
             angleZ
-        );
-
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            rotationSpeed * Time.deltaTime
         );
     }
 }
