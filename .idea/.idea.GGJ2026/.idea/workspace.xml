@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="40984fe6-7972-4c50-a9d5-6f1eb933ed9a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJ2026/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJ2026/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Gameplay-1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Gameplay-1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/YughuesFreeConcreteMaterials/YughuesFreeConcreteMaterials_HDRP.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/YughuesFreeConcreteMaterials/YughuesFreeConcreteMaterials_URP.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EvolveGames/RealisticFPSController/PlayerController.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EvolveGames/RealisticFPSController/PlayerController.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Gameplay.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ENEMY/RobotLookAtPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ENEMY/RobotLookAtPlayer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1769848060667</updated>
       <workItem from="1769848062579" duration="3332000" />
-      <workItem from="1769855620174" duration="595000" />
+      <workItem from="1769855620174" duration="1612000" />
     </task>
     <servers />
   </component>
