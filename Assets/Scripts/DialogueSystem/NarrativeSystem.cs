@@ -20,7 +20,7 @@ public class NarrativeSystem : MonoBehaviour
     void Update()
     {
         // E tuşuna basıldığında ve sistem zaten çalışmıyorsa başlat
-        if (Input.GetKeyDown(KeyCode.E) && !isPlaying)
+        if (Input.GetKeyDown(KeyCode.T) && !isPlaying)
         {
             StartNarrative();
         }
