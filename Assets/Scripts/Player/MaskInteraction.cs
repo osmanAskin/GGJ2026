@@ -1,18 +1,33 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class MaskInteraction : MonoBehaviour
 {
     public KeyCode toggleKey = KeyCode.E;
 
-    [Header("Rotation")]
+    [Header("Mask Rotation")]
     public Vector3 faceRotationEuler;
     public float rotateSpeed = 6f;
+
+    [Header("Player")]
+    public Transform player;
+
+    [Header("Upside World Spawn Points")]
+    public Transform[] upsideSpawnPoints;
 
     private Quaternion handRotation;
     private Quaternion faceRotation;
 
-    private bool isEquipped = false;
     private bool isRotating = false;
+    private bool isInUpsideWorld = false;
+
+    CharacterController characterController;
+    Rigidbody rb;
+
+    void Awake()
+    {
+        characterController = player.GetComponent<CharacterController>();
+        rb = player.GetComponent<Rigidbody>();
+    }
 
     void Start()
     {
@@ -22,31 +37,95 @@ public class MaskInteraction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (Input.GetKeyDown(toggleKey) && !isRotating)
         {
-            isEquipped = !isEquipped;
             isRotating = true;
 
-            Debug.Log(isEquipped ? "Maske takýlýyor" : "Maske çýkarýlýyor");
+            if (!isInUpsideWorld)
+                EnterUpsideWorld();
+            else
+                ExitUpsideWorld();
         }
 
-        if (isRotating)
+        RotateMask();
+    }
+
+    void EnterUpsideWorld()
+    {
+        isInUpsideWorld = true;
+
+        Transform closestPoint = GetClosestSpawnPoint(player.position);
+
+        if (closestPoint != null)
         {
-            Quaternion target = isEquipped ? faceRotation : handRotation;
+            TeleportPlayer(closestPoint.position);
+            Debug.Log("Upside World â†’ En yakÄ±n noktaya spawnlandÄ±");
+        }
+        else
+        {
+            Debug.LogError("Upside spawn point bulunamadÄ±!");
+        }
+    }
 
-            transform.localRotation = Quaternion.Slerp(
-                transform.localRotation,
-                target,
-                Time.deltaTime * rotateSpeed
-            );
+    void ExitUpsideWorld()
+    {
+        isInUpsideWorld = false;
+        Debug.Log("Normal World'a dÃ¶nÃ¼ldÃ¼");
+    }
 
-            if (Quaternion.Angle(transform.localRotation, target) < 1f)
+    Transform GetClosestSpawnPoint(Vector3 fromPosition)
+    {
+        Transform closest = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (Transform point in upsideSpawnPoints)
+        {
+            float dist = Vector3.Distance(fromPosition, point.position);
+            if (dist < minDistance)
             {
-                transform.localRotation = target;
-                isRotating = false;
-
-                Debug.Log(isEquipped ? "Maske takýldý" : "Maske çýkarýldý");
+                minDistance = dist;
+                closest = point;
             }
+        }
+
+        return closest;
+    }
+
+    void TeleportPlayer(Vector3 targetPosition)
+    {
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+
+        if (characterController != null)
+            characterController.enabled = false;
+
+        player.position = targetPosition;
+
+        if (characterController != null)
+            characterController.enabled = true;
+
+        if (rb != null)
+            rb.isKinematic = false;
+    }
+
+    void RotateMask()
+    {
+        Quaternion targetRotation = isInUpsideWorld ? faceRotation : handRotation;
+
+        transform.localRotation = Quaternion.Slerp(
+            transform.localRotation,
+            targetRotation,
+            Time.deltaTime * rotateSpeed
+        );
+
+        if (Quaternion.Angle(transform.localRotation, targetRotation) < 0.5f)
+        {
+            transform.localRotation = targetRotation;
+            isRotating = false;
         }
     }
 }
